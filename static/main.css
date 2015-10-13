@@ -1,0 +1,27 @@
+/* CSS declarations go here */
+.navbar-default {
+	background-color: rgba(0, 0, 0, 0.75);
+	font-family: 'Raleway', sans-serif;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+.navbar-default  .navbar-nav li a {
+	color: white;
+}
+
+.jumbotron {
+	background-color: white;
+}
+
+.jumbotron h1 {
+	font-family: 'Raleway', sans-serif;
+}
+
+.jumbotron .img-responsive {
+	max-height: 500px;
+	max-width: 500px;
+	margin: 0 auto;
+}
