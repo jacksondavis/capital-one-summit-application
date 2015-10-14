@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>capital-one-gram</title>
   	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
   	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" />
   	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-	<div class = "navbar navbar-default navbar-static-top">
+	<div class = "navbar navbar-default navbar-fixed-top">
 		<div class = "container">
-			<a href = "#" class = "navbar-brand">CapitalOne</a>
+			<a href = "#home" class = "navbar-brand scroll">CapitalOne</a>
 			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
 				<span class = "icon-bar"></span>
 				<span class = "icon-bar"></span>
@@ -26,11 +29,38 @@
 		</div>
 	</div>
 
-	<div class = "container">
-		<div class = "jumbotron text-center">
-			<img class="img-responsive" src="../static/logo.png" alt="">
-			<h1>Engineering Summit</h1>
+	<section class="homeScreen" id="home">
+		<div class = "container">
+			<div class = "jumbotron text-center">
+				<img class="img-custom" src="../static/logo.png" alt="">
+				<h1>Engineering Summit</h1>
+				<a class = "btn btn-default btn-lg"><i class="fa fa-instagram"></i> Get Posts</a>
+			</div>
 		</div>
-	</div>
+	</section>
+
+	<section class="aboutMe" id="about">
+	    <div class="container">
+	        <div class="col-sm-12 col-default text-center">
+	        	<h2>About Me</h2>
+	        	<p>Hello! My name is Jackson Davis, and I am a sophomore studying Computer Science and Statistics at the University of Illinois at Urbana-Champaign. This is my application for the Capital One Software Engineering Summit. I decided to use the Python Flask framework as well as Instagram-Python wrapper to create this app. Click on "Get Posts" above to view the 20 most recent posts containing #CapitalOne.</p>
+	        </div>
+	    </div>
+	</section>
+    <!-- Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <!-- JQuery Script to Enable Smooth Scrolling -->
+    <!-- Found on http://www.cmscanbesimple.org/blog/smooth-page-scroll-to-an-anchor -->
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $(".scroll").click(function(event) {
+        event.preventDefault();
+        $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 1000);
+        } );
+      } );
+    </script>
 </body>
 </html>
