@@ -10,7 +10,8 @@ def index():
 
 @app.route("/posts")
 def get_posts():
-    return engine.get_media_info()
+	print get_media_info()
+	return render_template('index.html')
 
 if __name__ == "__main__":
     app.run()

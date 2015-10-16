@@ -16,7 +16,5 @@ def get_insta_posts():
 #Post = collections.namedtuple("Post", "likes", "caption")
 
 def get_media_info():
-	for post in get_insta_posts():
-		#api.media("Media")
-		print [post.like_count, post.caption]
+	return get_insta_posts()
 
