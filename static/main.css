@@ -49,3 +49,19 @@
 	font-family: 'Raleway', sans-serif;
 	font-size: 22px;
 }
+
+.col-pic {
+	padding-bottom: 25px;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.col-pic img {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.col-pic p {
+	font-family: 'Raleway', sans-serif;
+	font-size: 15px;
+}

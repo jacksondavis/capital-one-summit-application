@@ -12,9 +12,3 @@ api = InstagramAPI(client_id=client_id, client_secret=client_secret, client_ips=
 def get_insta_posts():
 	data = api.tag_recent_media(tag_name='CapitalOne')
 	return data[0]
-
-#Post = collections.namedtuple("Post", "likes", "caption")
-
-def get_media_info():
-	return get_insta_posts()
-
