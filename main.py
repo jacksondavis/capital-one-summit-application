@@ -12,8 +12,14 @@ def index():
 @app.route("/posts")
 def get_posts():
 	posts = engine.get_insta_posts()
-	print posts[0].id
 	return render_template('posts.html', posts=posts)
+
+@app.route("/user/<id>")
+def get_user(id):
+	user = engine.get_user_info(id)
+	print type(user.counts)
+	print user.counts['media']
+	return render_template('user.html', user=user)
 
 if __name__ == "__main__":
     app.run()
