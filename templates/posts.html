@@ -24,6 +24,7 @@
 	          <ul class="nav navbar-nav navbar-right">
 	            <li><a href = "#about" class="scroll">About Me</a></li>
 	            <li><a href = "#analytics" class="scroll">Analytics</a></li>
+	            <li><a href = "/posts" class="scroll">Posts</a></li>
 	          </ul>
 	        </div>
 		</div>
@@ -33,17 +34,26 @@
 		<div class = "container">
 			<div class = "jumbotron text-center">
 				<h1>Recent Posts</h1>
+				<p>Click on a username to view their information</p>
 			</div>
 		</div>
 	</section>
 
 	<div class="container">
         <div class="row">
-            {% for post in posts %}
-		    <div class="col-xs-3 col-pic">
+            {% for post, sentiment in data %}
+		    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-pic">
 		        <a href="/user/{{ post.user.id }}"><img src="{{ post.images['standard_resolution'].url }}"/></a>
 		        <p> <a href="/user/{{ post.user.id }}"><i class="fa fa-user"></i> {{ post.user }}</a></p>
 		 		<p> <i class="fa fa-heart"></i> Likes: {{ post.like_count }}</p>
+		 		<p>{% if sentiment=='positive' %}
+		 			<i class="fa fa-smile-o"></i>
+		 		{% elif sentiment=='negative' %}
+		 			<i class="fa fa-frown-o"></i>
+		 		{% else %}
+		 			<i class="fa fa-meh-o"></i>
+		 		{% endif %} 
+		 		Caption Sentiment: {{ sentiment }}</p>
 		    </div>
         	{% endfor %}
         </div>

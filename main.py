@@ -4,15 +4,19 @@ import engine
 
 app = Flask(__name__)
 
-@app.route('/')
 @app.route('/home')
+@app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route("/posts")
 def get_posts():
 	posts = engine.get_insta_posts()
-	return render_template('posts.html', posts=posts)
+	sentiments = []
+	for post in posts:
+		sentiments.append(engine.get_caption_sentiment(post)["docSentiment"]["type"])
+	print sentiments
+	return render_template('posts.html', data = zip(posts, sentiments))
 
 @app.route("/user/<id>")
 def get_user(id):
