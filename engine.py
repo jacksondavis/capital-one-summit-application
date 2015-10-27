@@ -1,6 +1,7 @@
 from instagram.client import InstagramAPI
 from secrets import INSTAGRAM_CODES
 from alchemyapi import AlchemyAPI
+from collections import defaultdict
 import json
 import collections
 
@@ -23,3 +24,9 @@ def get_caption_sentiment(post):
 	caption = post.caption
 	response = alchemyapi.sentiment("text", caption)
 	return response
+
+def get_sentiment_frequencies(sentiments):
+	freqs = defaultdict(int)
+	for sentiment in sentiments:
+		freqs[sentiment] += 1
+	return freqs
