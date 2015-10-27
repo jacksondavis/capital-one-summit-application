@@ -48,4 +48,6 @@ def test_db():
 	)
 
 	cur = conn.cursor()
-	cur.execute("""SELECT * from insta_posts""")
+	rows = cur.fetchall()
+	for row in rows:
+    	print row[1]
