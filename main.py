@@ -32,12 +32,6 @@ def get_user(id):
 	print user.counts['media']
 	return render_template('user.html', user=user)
 
-@app.route('/test')
-def test():
-	engine.test_db()
-	return 'hi'
-
-
 @app.route("/analytics")
 def get_analysis():
 	posts = engine.get_insta_posts()

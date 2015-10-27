@@ -15,6 +15,12 @@ client_ip = INSTAGRAM_CODES["CLIENT_IP"]
 api = InstagramAPI(client_id=client_id, client_secret=client_secret, client_ips= client_ip,access_token= access_token) 
 alchemyapi = AlchemyAPI()
 
+#I debated using a database to hold the sentiments and data for each post,
+#However after running into issues with Heroku's PostgreSQL integration
+#And realizing the issues the actual database use would be light,
+#I opted to simply create a dictionary.
+post_data = {}
+
 def get_insta_posts():
 	data = api.tag_recent_media(tag_name='CapitalOne')
 	return data[0]
@@ -24,8 +30,14 @@ def get_user_info(id):
 	return user
 
 def get_caption_sentiment(post):
+	response = ""
 	caption = post.caption
-	response = alchemyapi.sentiment("text", caption)
+	if post.link in post_data:
+		response = post_data[post.link]
+	else:
+		response = alchemyapi.sentiment("text", caption)
+    	post_data[post.link] = response
+
 	return response
 
 def get_sentiment_frequencies(sentiments):
@@ -33,20 +45,3 @@ def get_sentiment_frequencies(sentiments):
 	for sentiment in sentiments:
 		freqs[sentiment] += 1
 	return freqs
-
-def test_db():	
-
-	urlparse.uses_netloc.append("postgres")
-	url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-	conn = psycopg2.connect(
-	    database=url.path[1:],
-	    user=url.username,
-	    password=url.password,
-	    host=url.hostname,
-	    port=url.port
-	)
-
-	cur = conn.cursor()
-	rows = cur.fetchall()
-	print rows
