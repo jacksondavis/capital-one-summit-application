@@ -1,0 +1,1 @@
+web: gunicorn capitalone:app --log-file=-
