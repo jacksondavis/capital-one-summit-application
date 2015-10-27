@@ -1,1 +1,1 @@
-web: gunicorn capitalone:app --log-file=-
+web: gunicorn main:app --preload
