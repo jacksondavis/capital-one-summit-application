@@ -17,11 +17,7 @@ def get_posts():
 	posts = engine.get_insta_posts()
 	sentiments = []
 	for post in posts:
-		sentiments.append(engine.get_caption_sentiment(post)["docSentiment"]["type"])
-	print sentiments
-	print json.dumps(sentiments)
-	sentimentFreqs = engine.get_sentiment_frequencies(sentiments)
-	print sentimentFreqs
+		sentiments.append(engine.get_caption_sentiment(post))
 	return render_template('posts.html', data = zip(posts, sentiments))
 
 @app.route("/user/<id>")
@@ -33,10 +29,9 @@ def get_user(id):
 
 @app.route("/analysis")
 def get_analysis():
-	jsonData = jsonify(engine.post_data)
-	print type(jsonData)
-	print jsonData
-	return render_template('analysis.html', data = jsonData)
+	sentimentFreqs = engine.get_sentiment_frequencies()
+	print sentimentFreqs
+	return render_template('analysis.html')
 
 if __name__ == "__main__":
     app.run()

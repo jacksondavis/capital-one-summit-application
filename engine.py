@@ -4,7 +4,6 @@ from secrets import ALCHEMY_CODES
 from alchemyapi import AlchemyAPI
 from collections import defaultdict
 import json
-import collections
 import random
 
 client_id = INSTAGRAM_CODES["CLIENT_ID"]
@@ -44,7 +43,7 @@ def get_caption_sentiment(post):
 			alchemyapi.apikey = key
 			response = alchemyapi.sentiment("text", caption)
 			if response['status'] == 'OK':
-				post_data[post.link] = response
+				post_data[post.link] = response["docSentiment"]["type"]
 				return response
 			elif response['status'] == 'ERROR':
 				print 'APIKey Used'
@@ -54,8 +53,9 @@ def get_caption_sentiment(post):
 
 	return response
 
-def get_sentiment_frequencies(sentiments):
+def get_sentiment_frequencies():
 	freqs = defaultdict(int)
-	for sentiment in sentiments:
-		freqs[sentiment] += 1
+	for value in post_data.values():
+		freqs[value] += 1
+	
 	return freqs
