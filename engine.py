@@ -4,6 +4,9 @@ from alchemyapi import AlchemyAPI
 from collections import defaultdict
 import json
 import collections
+import os
+import psycopg2
+import urlparse
 
 client_id = INSTAGRAM_CODES["CLIENT_ID"]
 client_secret = INSTAGRAM_CODES["CLIENT_SECRET"]
@@ -30,3 +33,19 @@ def get_sentiment_frequencies(sentiments):
 	for sentiment in sentiments:
 		freqs[sentiment] += 1
 	return freqs
+
+def test_db():	
+
+	urlparse.uses_netloc.append("postgres")
+	url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+	conn = psycopg2.connect(
+	    database=url.path[1:],
+	    user=url.username,
+	    password=url.password,
+	    host=url.hostname,
+	    port=url.port
+	)
+
+	cur = conn.cursor()
+	cur.execute("""SELECT * from insta_posts""")

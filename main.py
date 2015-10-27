@@ -5,6 +5,7 @@ import pprint
 import json
 import engine
 
+
 app = Flask(__name__)
 
 @app.route('/home')
@@ -30,6 +31,12 @@ def get_user(id):
 	print type(user.counts)
 	print user.counts['media']
 	return render_template('user.html', user=user)
+
+@app.route('/test')
+def test():
+	engine.test_db()
+	return 'hi'
+
 
 @app.route("/analytics")
 def get_analysis():
