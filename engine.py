@@ -49,5 +49,4 @@ def test_db():
 
 	cur = conn.cursor()
 	rows = cur.fetchall()
-	for row in rows:
-    	print row[1]
+	print rows
