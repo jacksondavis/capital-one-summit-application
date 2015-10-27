@@ -44,8 +44,17 @@
         {% for post, sentiment in data %}
 			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 col-pic">
 				<div class="thumbnail">
-	                <p class="imgDescription">{{ post.link }}</p>
-	                <a href="/user/{{ post.user.id }}"><img src="{{ post.images['standard_resolution'].url }}"/></a>
+			        <div class="insta-pic">
+	                	<a href="/user/{{ post.user.id }}"><img src="{{ post.images['standard_resolution'].url }}"/></a>
+	                	<div class="hidden">
+				            <div class="caption">
+				                <div class="centered">
+				                     <p>-Caption-</p>
+				                     <p>{{ post.caption }}</p>
+				                </div>
+				            </div>
+			        	</div>
+	                </div>
 			        <p> <a href="/user/{{ post.user.id }}"><i class="fa fa-user"></i> {{ post.user }}</a></p>
 			        <p> <a href="{{ post.link }}"><i class="fa fa-instagram"></i> Link </a></p>
 			 		<p> <i class="fa fa-heart"></i> Likes: {{ post.like_count }}</p>
