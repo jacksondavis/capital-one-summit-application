@@ -1,3 +1,5 @@
+venv
 .DS_Store
 secrets.py
 .txt
+database.py
