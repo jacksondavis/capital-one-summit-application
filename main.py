@@ -31,7 +31,7 @@ def get_user(id):
 	print user.counts['media']
 	return render_template('user.html', user=user)
 
-@app.route("/analytics")
+@app.route("/analysis")
 def get_analysis():
 	jsonData = jsonify(engine.post_data)
 	print type(jsonData)
