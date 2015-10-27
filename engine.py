@@ -4,9 +4,6 @@ from alchemyapi import AlchemyAPI
 from collections import defaultdict
 import json
 import collections
-import os
-import psycopg2
-import urlparse
 
 client_id = INSTAGRAM_CODES["CLIENT_ID"]
 client_secret = INSTAGRAM_CODES["CLIENT_SECRET"]
