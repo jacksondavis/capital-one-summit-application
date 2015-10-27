@@ -4,30 +4,41 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>User Information</title>
-  	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  	<title>capital-one-gram</title>
+	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
   	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" />
   	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
-	<div class = "navbar navbar-default navbar-fixed-top">
-		<div class = "container">
-			<a href = "/home" class = "navbar-brand">CapitalOne</a>
-			<button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
-				<span class = "icon-bar"></span>
-				<span class = "icon-bar"></span>
-				<span class = "icon-bar"></span>
-			</button>
-			<div class = "collapse navbar-collapse navCollapseMenu">
-	          <ul class="nav navbar-nav navbar-right">
+	<!-- Navigation bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href = "/home" class = "navbar-brand">CapitalOne</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href = "/home#about">About Me</a></li>
+	        <li><a href = "#analytics" class="scroll">Analytics</a></li>
+	        <li><a href ="/posts">Posts</a></li>
+            <li class="dropdown">
+              <ul class="dropdown-menu">
+                <li><a href = "/home#about">About Me</a></li>
 	            <li><a href = "#analytics" class="scroll">Analytics</a></li>
-				<li><a href ="/posts">Posts</a></li>
-	          </ul>
-	        </div>
-		</div>
-	</div>
+	            <li><a href ="/posts">Posts</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
 	<section class="homeScreen" id="home">
 		<div class = "container">
@@ -49,10 +60,9 @@
 	</section>
 
 
-    <!-- Scripts -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <!-- JQuery and Bootstrap JS Imports -->
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/scripts/bootstrap.min.js"></script>
 
     <!-- JQuery Script to Enable Smooth Scrolling -->
     <!-- Found on http://www.cmscanbesimple.org/blog/smooth-page-scroll-to-an-anchor -->

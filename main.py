@@ -5,7 +5,6 @@ import pprint
 import json
 import engine
 
-
 app = Flask(__name__)
 
 @app.route('/home')
@@ -34,15 +33,10 @@ def get_user(id):
 
 @app.route("/analytics")
 def get_analysis():
-	posts = engine.get_insta_posts()
-	sentiments = []
-	for post in posts:
-		sentiments.append(engine.get_caption_sentiment(post)["docSentiment"]["type"])
-	sentimentFreqs = json.dumps(engine.get_sentiment_frequencies(sentiments))
-	pp = pprint.PrettyPrinter(depth=6)
-	print type(sentimentFreqs)
-	pp.pprint(sentimentFreqs)
-	return render_template('analysis.html', data = sentimentFreqs)
+	jsonData = jsonify(engine.post_data)
+	print type(jsonData)
+	print jsonData
+	return render_template('analysis.html', data = jsonData)
 
 if __name__ == "__main__":
     app.run()
