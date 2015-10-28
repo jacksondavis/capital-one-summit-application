@@ -57,6 +57,7 @@
 				<div class="thumbnail">
 			        <div class="insta-pic">
 	                	<a href="/user/{{ post.user.id }}"><img src="{{ post.images['standard_resolution'].url }}"/></a>
+	                	<a href="{{ post.link }}">
 	                	<div class="hidden">
 				            <div class="caption">
 				                <div class="centered">
@@ -65,9 +66,10 @@
 				                </div>
 				            </div>
 			        	</div>
+			        	</a>
 	                </div>
 			        <p> <a href="/user/{{ post.user.id }}"><i class="fa fa-user"></i> {{ post.user }}</a></p>
-			        <p> <a href="{{ post.link }}"><i class="fa fa-instagram"></i> Link </a></p>
+			        <p> <a href="{{ post.link }}"><i class="fa fa-instagram"></i> Post </a></p>
 			 		<p> <i class="fa fa-heart"></i> Likes: {{ post.like_count }}</p>
 			 		<p>{% if sentiment=='positive' %}
 			 			<i class="fa fa-smile-o"></i>
