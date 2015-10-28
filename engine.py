@@ -44,7 +44,7 @@ def get_caption_sentiment(post):
 			response = alchemyapi.sentiment("text", caption)
 			if response['status'] == 'OK':
 				post_data[post.link] = response["docSentiment"]["type"]
-				return response
+				return response["docSentiment"]["type"]
 			elif response['status'] == 'ERROR':
 				print 'APIKey Used'
 			else:
