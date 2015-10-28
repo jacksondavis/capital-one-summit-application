@@ -2,7 +2,7 @@
 <html lang='en'>
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Post Analysis</title>
@@ -45,13 +45,42 @@
 			<div class = "jumbotron text-center">
 				<h1>Analysis</h1>
 				<hr>
+				<div id="pieChart"></div>
 			</div>
 		</div>
 	</section>
 
-
 	<!-- JQuery and Bootstrap JS Imports -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/static/scripts/bootstrap.min.js"></script>
+
+	<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+	<script src="{{ url_for('static', filename='scripts/d3pie.js') }}"></script>
+
+	<script>
+		var serverdata = {{ data|tojson }};
+	  	var data = JSON.parse(serverdata);
+	  	console.log(data);
+
+		var pie = new d3pie("pieChart", {
+		header: {
+		    title: {
+		      text: "Sentiments"
+		    },
+		    location: "pie-center"
+		  },
+		  size: {
+		    pieInnerRadius: "80%"
+		  },
+		  data: {
+		    sortOrder: "label-asc",
+		    content: [
+		      { label: "Positive", value: data.positive },
+		      { label: "Neutral", value: data.neutral },
+		      { label: "Negative", value: data.negative }
+		    ]
+		  }
+		});
+	</script>
 	</body>
 </html>

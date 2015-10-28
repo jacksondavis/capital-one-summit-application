@@ -18,7 +18,7 @@ def get_posts():
 	sentiments = []
 	for post in posts:
 		sentiments.append(engine.get_caption_sentiment(post))
-	return render_template('posts.html', data = zip(posts, sentiments))
+	return render_template('posts.html', data=zip(posts, sentiments))
 
 @app.route("/user/<id>")
 def get_user(id):
@@ -30,8 +30,9 @@ def get_user(id):
 @app.route("/analysis")
 def get_analysis():
 	sentimentFreqs = engine.get_sentiment_frequencies()
-	print sentimentFreqs
-	return render_template('analysis.html')
+	jsonData = json.dumps(sentimentFreqs)
+	print jsonData
+	return render_template('analysis.html', data=jsonData)
 
 if __name__ == "__main__":
     app.run()
