@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from __future__ import print_function
 
 import requests
@@ -205,7 +207,7 @@ class AlchemyAPI:
         target -> the word or phrase to run sentiment analysis on.
         options -> various parameters that can be used to adjust how the API works, see below for more info on the available options.
         Available Options:
-        showSourceText  -> 0: disabled, 1: enabled
+        showSourceText	-> 0: disabled, 1: enabled
         OUTPUT:
         The response, already converted from JSON to a Python object.
         """
