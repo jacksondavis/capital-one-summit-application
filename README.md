@@ -1,4 +1,4 @@
-## Capital One Summit for Software Engineers Submissions ##
+## Capital One Summit for Software Engineers Submission ##
 
 [https://summit-application.herokuapp.com/](https://summit-application.herokuapp.com/)
 
@@ -50,5 +50,5 @@ There is a currently a live link to this application [here](https://summit-appli
 	`secrets.py` holds as many [AlchemyAPI keys](http://www.alchemyapi.com/api/register.html) as you want to use, 		and one [InstgramAPI key](https://instagram.com/developer/) in order to access the necessary API's in the application. 
 4. Finally, type `python main.py` in order to host the application locally.
 
-## Author ## 
+## Author ##
 This application was created by Jackson Davis. If you have any questions or suggestions for improvement, feel free to email me at jaxtdavis@gmail.com.
