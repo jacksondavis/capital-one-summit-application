@@ -5,6 +5,7 @@ from alchemyapi import AlchemyAPI
 from collections import defaultdict
 import json
 import random
+import decimal
 
 client_id = INSTAGRAM_CODES["CLIENT_ID"]
 client_secret = INSTAGRAM_CODES["CLIENT_SECRET"]
@@ -62,14 +63,14 @@ def get_sentiment_frequencies():
 	negative = freqs['negative']
 	neutral = freqs['neutral']
 	total = positive + negative	+ neutral
-	numPos = (float(positive)/float(total)) * 100
-	numNeg = (float(negative)/float(total)) * 100
-	numNeu = (float(neutral)/float(total)) * 100
+	numPos = decimal.Decimal((float(positive)/float(total)) * 100)
+	numNeg = decimal.Decimal((float(negative)/float(total)) * 100)
+	numNeu = decimal.Decimal((float(neutral)/float(total)) * 100)
 
 	freqList = [
-		{'sentiment': 'positive', 'freq': positive, 'percent': numPos},
-		{'sentiment': 'negative', 'freq': negative, 'percent': numNeg},
-		{'sentiment': 'neutral', 'freq': neutral, 'percent': numNeu }
+		{'sentiment': 'positive', 'freq': positive, 'percent': round(numPos,2)},
+		{'sentiment': 'negative', 'freq': negative, 'percent': round(numNeg,2)},
+		{'sentiment': 'neutral', 'freq': neutral, 'percent': round(numNeu,2) }
 	]
 
 	return [freqList, total]
