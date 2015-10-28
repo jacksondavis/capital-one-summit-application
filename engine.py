@@ -62,9 +62,9 @@ def get_sentiment_frequencies():
 	negative = freqs['negative']
 	neutral = freqs['neutral']
 	total = positive + negative	+ neutral
-	numPos = float(positive)/float(total)
-	numNeg = float(negative)/float(total)
-	numNeu = float(neutral)/float(total)
+	numPos = (float(positive)/float(total)) * 100
+	numNeg = (float(negative)/float(total)) * 100
+	numNeu = (float(neutral)/float(total)) * 100
 
 	freqList = [
 		{'sentiment': 'positive', 'freq': positive, 'percent': numPos},
@@ -72,4 +72,4 @@ def get_sentiment_frequencies():
 		{'sentiment': 'neutral', 'freq': neutral, 'percent': numNeu }
 	]
 
-	return freqList
+	return [freqList, total]

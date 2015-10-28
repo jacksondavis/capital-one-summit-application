@@ -29,10 +29,12 @@ def get_user(id):
 
 @app.route("/analysis")
 def get_analysis():
-	sentimentFreqs = engine.get_sentiment_frequencies()
+	sentData = engine.get_sentiment_frequencies()
+	sentimentFreqs = sentData[0]
+	total = sentData[1]
 	jsonData = json.dumps(sentimentFreqs)
 	print jsonData
-	return render_template('analysis.html', data=jsonData)
+	return render_template('analysis.html', data=jsonData, total=total)
 
 if __name__ == "__main__":
     app.run()

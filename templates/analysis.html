@@ -44,6 +44,7 @@
 		<div class = "container">
 			<div class = "jumbotron text-center">
 				<h1>Analysis</h1>
+				<p>For the last {{total}} posts</p>
 				<hr>
 				<div id="chart"></div>
 			</div>
@@ -98,7 +99,7 @@
 					d.innerRadius = 0;
 					d.outerRadius = r;
 		    return "translate(" + arc.centroid(d) + ")";}).style('fill', 'white').style("font-size", "14px").style("font-family", "'Raleway', sans-serif").attr("text-anchor", "middle").text( function(d, i) {
-		    return data[i].sentiment + ' ||  ' + data[i].percent + '%';}
+		    return data[i].sentiment + ' - ' + data[i].percent + '%';}
 				);
 
 	    })(window.d3);
