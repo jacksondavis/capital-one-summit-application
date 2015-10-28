@@ -55,8 +55,12 @@ def get_caption_sentiment(post):
 				post_data[post.link] = response["docSentiment"]["type"]
 				return response["docSentiment"]["type"]
 			elif response['status'] == 'ERROR':
-				print 'APIKey Used'
-				continue
+				if(response['statusInfo'] == 'unsupported-text-language'):
+				 	response = 'Unsupported Language'
+					return response
+				else:
+					print 'Error' + response['statusInfo']
+					continue
 			else:
 				response = 'Error'
 				return response
@@ -77,10 +81,17 @@ def get_sentiment_frequencies():
 	numNeg = decimal.Decimal((float(negative)/float(total)) * 100)
 	numNeu = decimal.Decimal((float(neutral)/float(total)) * 100)
 
+	if(positive >= negative and positive >= neutral):
+		trend = 'positive'
+	elif(negative > positive and negative >= netural):
+		trend = 'negative'
+	else:
+		trend = 'neutral'
+
 	freqList = [
 		{'sentiment': 'positive', 'freq': positive, 'percent': round(numPos,2)},
 		{'sentiment': 'negative', 'freq': negative, 'percent': round(numNeg,2)},
 		{'sentiment': 'neutral', 'freq': neutral, 'percent': round(numNeu,2) }
 	]
 
-	return [freqList, total]
+	return [freqList, total, trend]

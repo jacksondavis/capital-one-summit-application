@@ -1,5 +1,6 @@
 from flask import Flask, flash, jsonify, render_template, redirect
 from flask_bootstrap import Bootstrap
+from collections import Counter
 import os
 import pprint
 import json
@@ -33,12 +34,24 @@ def get_user(id):
 # Charts sentiment frequencies
 @app.route("/analysis")
 def get_analysis():
+	# Refresh posts
+	posts = engine.get_insta_posts()
+	sentiments = []
+	for post in posts:
+		sentiments.append(engine.get_caption_sentiment(post))
+
+	# Gets current trend
+	currTrend =  Counter(sentiments).most_common(1)[0][0]
+
+	# Gets overall frequencies
 	sentData = engine.get_sentiment_frequencies()
 	sentimentFreqs = sentData[0]
 	total = sentData[1]
+	trend = sentData[2]
+
 	jsonData = json.dumps(sentimentFreqs)
 	print jsonData
-	return render_template('analysis.html', data=jsonData, total=total)
+	return render_template('analysis.html', data=jsonData, total=sentData[1], trend=trend, currTrend=currTrend)
 
 if __name__ == "__main__":
     app.run()
