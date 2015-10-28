@@ -40,24 +40,26 @@
     </div>
   </nav>
 
+  <!-- User Image -->
   <section class="homeScreen" id="home">
     <div class = "container">
-     <div class = "jumbotron text-center">
-      <img class="img-user" src="{{ user.profile_picture }}" alt="">
+       <div class = "jumbotron text-center">
+        <img class="img-user" src="{{ user.profile_picture }}" alt="">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="user-info" id="user">
- <div class="container">
-   <div class="col-sm-12 col-user text-center">
-    <h3>Info for {{ user }}</h3>
-    <p>Posts: {{ user.counts['media'] }}</p>
-    <p>Followers: {{ user.counts['followed_by'] }}</p>
-    <p>Follows: {{ user.counts['follows'] }}</p>
-  </div>
-</div>
-</section>
+  <!-- User data -->
+  <section class="user-info" id="user">
+    <div class="container">
+      <div class="col-sm-12 col-user text-center">
+        <h3>Info for {{ user }}</h3>
+        <p>Posts: {{ user.counts['media'] }}</p>
+        <p>Followers: {{ user.counts['followed_by'] }}</p>
+        <p>Follows: {{ user.counts['follows'] }}</p>
+      </div>
+    </div>
+  </section>
 
 
 <!-- JQuery and Bootstrap JS Imports -->

@@ -7,11 +7,13 @@ import engine
 
 app = Flask(__name__)
 
+# Home Page
 @app.route('/home')
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# Retrieves posts and runs sentiment analysis
 @app.route("/posts")
 def get_posts():
 	posts = engine.get_insta_posts()
@@ -20,6 +22,7 @@ def get_posts():
 		sentiments.append(engine.get_caption_sentiment(post))
 	return render_template('posts.html', data=zip(posts, sentiments))
 
+# Retrieves user information
 @app.route("/user/<id>")
 def get_user(id):
 	user = engine.get_user_info(id)
@@ -27,6 +30,7 @@ def get_user(id):
 	print user.counts['media']
 	return render_template('user.html', user=user)
 
+# Charts sentiment frequencies
 @app.route("/analysis")
 def get_analysis():
 	sentData = engine.get_sentiment_frequencies()

@@ -62,8 +62,10 @@
 	<script src="{{ url_for('static', filename='scripts/d3.js') }}"></script>
 
 	<!-- Script for generating sentiment pie-chart with data from sentimentFreqs -->
+	<!-- A lot of the formatting came with help from this website http://jsfiddle.net/ragingsquirrel3/qkHK6/ -->
 	<script>
 		(function(d3) {
+			//Imports sentiment frequency data
 			var serverdata = {{ data|tojson }};
 			var data = JSON.parse(serverdata);
 			console.log(data[0].freq)
