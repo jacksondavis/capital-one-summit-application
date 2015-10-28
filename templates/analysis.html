@@ -3,41 +3,41 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<title>Post Analysis</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Post Analysis</title>
 	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-  	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" />
-  	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" />
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 
 <body>
 	<!-- Navigation bar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href = "/home" class = "navbar-brand">CapitalOne</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href = "/home#about">About Me</a></li>
-	        <li><a href ="/posts">Posts</a></li>
-            <li class="dropdown">
-              <ul class="dropdown-menu">
-                <li><a href = "/home#about">About Me</a></li>
-	            <li><a href ="/posts">Posts</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href = "/home" class = "navbar-brand">CapitalOne</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href = "/home#about">About Me</a></li>
+					<li><a href ="/posts">Posts</a></li>
+					<li class="dropdown">
+						<ul class="dropdown-menu">
+							<li><a href = "/home#about">About Me</a></li>
+							<li><a href ="/posts">Posts</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 	<!-- Capital One Logo and Greeting -->
 	<section class="homeScreen" id="home">
@@ -46,64 +46,61 @@
 				<h1>Analysis</h1>
 				<p>For the last {{total}} posts</p>
 				<hr>
+				<!-- d3.js sentiment pie-chart -->
 				<div id="chart"></div>
 			</div>
 		</div>
 	</section>
 
-	<!-- <div id="pieChart"></div>
- -->
 
 	<!-- JQuery and Bootstrap JS Imports -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/static/scripts/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="/static/scripts/bootstrap.min.js"></script>
 
+	<!-- d3.js import -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
 	<script src="{{ url_for('static', filename='scripts/d3.js') }}"></script>
 
+	<!-- Script for generating sentiment pie-chart with data from sentimentFreqs -->
 	<script>
-      (function(d3) {
-        var serverdata = {{ data|tojson }};
- 		var data = JSON.parse(serverdata);
- 		console.log(data[0].freq)
- 		console.log(data.sentiment);
+		(function(d3) {
+			var serverdata = {{ data|tojson }};
+			var data = JSON.parse(serverdata);
+			console.log(data[0].freq)
+			console.log(data.sentiment);
 
-		var w = 350;
-		var h = 350;
-		var r = h/2;
-		var color = d3.scale.linear()
-		    .domain([0, 1, 2])
-		    .range(["#2ca02c", "#ad494a", "#1f77b4"]);
+			var w = 350;
+			var h = 350;
+			var r = h/2;
+			var color = d3.scale.linear()
+			.domain([0, 1, 2])
+			.range(["#2ca02c", "#ad494a", "#1f77b4"]);
 
-		var vis = d3.select('#chart').append("svg:svg").data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
+			var vis = d3.select('#chart').append("svg:svg").data([data]).attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(" + r + "," + r + ")");
 
-		var pie = d3.layout.pie().value(function(d){return d.freq;});
+			var pie = d3.layout.pie().value(function(d){return d.freq;});
 
-		// declare an arc generator function
-		var arc = d3.svg.arc().outerRadius(r);
+			var arc = d3.svg.arc().outerRadius(r);
 
-		// select paths, use arc generator to draw
-		var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice");
+			var arcs = vis.selectAll("g.slice").data(pie).enter().append("svg:g").attr("class", "slice");
 			arcs.append("svg:path")
-		    .attr("fill", function(d, i){
-		        return color(i);
-		    })
-		    .attr("d", function (d) {
-		        // log the result of the arc generator to show how cool it is :)
-		        console.log(arc(d));
-		        return arc(d);
-		    });
+			.attr("fill", function(d, i){
+				return color(i);
+			})
+			.attr("d", function (d) {
+				console.log(arc(d));
+				return arc(d);
+			});
 
-		// add the text
-		arcs.append("svg:text").attr("transform", function(d){
-					d.innerRadius = 0;
-					d.outerRadius = r;
-		    return "translate(" + arc.centroid(d) + ")";}).style('fill', 'white').style("font-size", "14px").style("font-family", "'Raleway', sans-serif").attr("text-anchor", "middle").text( function(d, i) {
-		    return data[i].sentiment + ' - ' + data[i].percent + '%';}
-				);
+			arcs.append("svg:text").attr("transform", function(d){
+				d.innerRadius = 0;
+				d.outerRadius = r;
+				return "translate(" + arc.centroid(d) + ")";}).style('fill', 'white').style("font-size", "14px").style("font-family", "'Raleway', sans-serif").attr("text-anchor", "middle").text( function(d, i) {
+					return data[i].sentiment + ' - ' + data[i].percent + '%';}
+					);
 
-	    })(window.d3);
-    </script>
+			})(window.d3);
+		</script>
 
 	</body>
-</html>
+	</html>

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CapitalOne Application</title>
-	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.css')}}" />
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -14,66 +14,66 @@
 <body>
 	<!-- Navigation bar -->
 	<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href = "#home" class = "navbar-brand scroll">CapitalOne</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href = "#about" class="scroll">About Me</a></li>
-	        <li><a href = "/analysis">Analytics</a></li>
-	        <li><a href ="/posts">Posts</a></li>
-            <li class="dropdown">
-              <ul class="dropdown-menu">
-                <li><a href = "#about" class="scroll">About Me</a></li>
-                <li><a href = "/analysis">Analytics</a></li>
-	             <li><a href ="/posts">Posts</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href = "#home" class = "navbar-brand scroll">CapitalOne</a>
       </div>
-    </nav>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href = "#about" class="scroll">About Me</a></li>
+          <li><a href = "/analysis">Analytics</a></li>
+          <li><a href ="/posts">Posts</a></li>
+          <li class="dropdown">
+            <ul class="dropdown-menu">
+              <li><a href = "#about" class="scroll">About Me</a></li>
+              <li><a href = "/analysis">Analytics</a></li>
+              <li><a href ="/posts">Posts</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Capital One Logo and Greeting -->
-	<section class="homeScreen" id="home">
-		<div class = "container">
-			<div class = "jumbotron text-center">
-				<img class="img-custom" src="../static/logo.png" alt="">
-				<h1>Engineering Summit</h1>
-				<a href ="/posts" class = "btn btn-default btn-lg"><i class="fa fa-instagram"></i> Get Posts</a>
-			</div>
-		</div>
-	</section>
+  <!-- Capital One Logo and Greeting -->
+  <section class="homeScreen" id="home">
+    <div class = "container">
+     <div class = "jumbotron text-center">
+      <img class="img-custom" src="../static/logo.png" alt="">
+      <h1>Engineering Summit</h1>
+      <a href ="/posts" class = "btn btn-default btn-lg"><i class="fa fa-instagram"></i> Get Posts</a>
+    </div>
+  </div>
+</section>
 
-	<!-- Quick About Me Section -->
-	<section class="aboutMe" id="about">
-	    <div class="container">
-	        <div class="col-sm-12 col-default text-center">
-	        	<h2>About Me</h2>
-	        	<p>Hello! My name is Jackson Davis, and I am a sophomore studying Computer Science and Statistics at the University of Illinois at Urbana-Champaign. This is my application for the Capital One Software Engineering Summit. I decided to use the Python Flask framework as well as Instagram-Python wrapper to create this app. Click on "Get Posts" above to view the 20 most recent posts containing #CapitalOne.</p>
-	        </div>
-	    </div>
-	</section>
+<!-- Quick About Me Section -->
+<section class="aboutMe" id="about">
+ <div class="container">
+   <div class="col-sm-12 col-default text-center">
+    <h2>About Me</h2>
+    <p>Hello! My name is Jackson Davis, and I am a sophomore studying Computer Science and Statistics at the University of Illinois at Urbana-Champaign. This is my application for the Capital One Software Engineering Summit. I decided to use the Python Flask framework as well as Instagram-Python wrapper to create this app. Click on "Get Posts" above to view the 20 most recent posts containing #CapitalOne.</p>
+  </div>
+</div>
+</section>
 
-	  <!-- JQuery and Bootstrap JS Imports -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/static/scripts/bootstrap.min.js"></script>
+<!-- JQuery and Bootstrap JS Imports -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/static/scripts/bootstrap.min.js"></script>
 
-    <!-- JQuery Script to Enable Smooth Scrolling -->
-    <!-- Found on http://www.cmscanbesimple.org/blog/smooth-page-scroll-to-an-anchor -->
-    <script type="text/javascript">
-      jQuery(document).ready(function($) {
-        $(".scroll").click(function(event) {
-        event.preventDefault();
-        $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 1000);
-        } );
-      } );
-    </script>
+<!-- JQuery Script to Enable Smooth Scrolling -->
+<!-- Found on http://www.cmscanbesimple.org/blog/smooth-page-scroll-to-an-anchor -->
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".scroll").click(function(event) {
+      event.preventDefault();
+      $('html,body').animate( { scrollTop:$(this.hash).offset().top } , 1000);
+    } );
+  } );
+</script>
 </body>
 </html>
