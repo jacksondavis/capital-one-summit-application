@@ -43,7 +43,7 @@ def get_user_info(id):
 # Then runs the AlchemyAPI sentiment analysis on a post's caption
 def get_caption_sentiment(post):
 	response = ""
-	caption = post.caption
+	caption = post.caption.text
 	if post.link in post_data:
 		response = post_data[post.link]
 		return response
@@ -56,7 +56,7 @@ def get_caption_sentiment(post):
 				return response["docSentiment"]["type"]
 			elif response['status'] == 'ERROR':
 				if(response['statusInfo'] == 'unsupported-text-language'):
-				 	response = 'Unsupported Language'
+				 	response = 'language error'
 					return response
 				else:
 					print 'Error' + response['statusInfo']
